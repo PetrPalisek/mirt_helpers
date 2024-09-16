@@ -23,10 +23,9 @@ score_by_normtable <- function(data, norm_table, id_col, theta_col, theta_se_col
   
   # Iterate through each row to calculate IQ, lower, higher, and pct
   for (i in 1:nrow(scores)) {
-    group <- scores$group[i]
+    group_index <- scores$group[i]
     group_stats <- norm_table %>% 
-      filter(!!sym(norm_group_col) == group) %>%
-      slice(1)  # Ensure only one row is selected
+      filter(!!sym(norm_group_col) == group_index)
     
     if (nrow(group_stats) == 1) {  # Check if one row was found
       group_mean <- group_stats$M
